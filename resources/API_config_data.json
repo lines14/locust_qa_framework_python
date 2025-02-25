@@ -1,0 +1,5 @@
+{
+    "API_base_URL": "https://jsonplaceholder.typicode.com",
+    "API_timeout": 1.5,
+    "API_requests_limit": 5
+}

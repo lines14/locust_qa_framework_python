@@ -1,0 +1,5 @@
+.env
+.env.test
+tests/log.txt
+.idea/
+.pytest_cache/
