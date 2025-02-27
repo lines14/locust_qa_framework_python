@@ -54,7 +54,7 @@ class GatewayAPIUser(HttpUser):
         payload = {
             "methodName": "GetItems",
             "params": {
-                "aTableName": "DOCUMENT_TYPE_IDS"
+                "aTableName": "DOCUMENTS_TYPES"
             }
         }
 
