@@ -1,7 +1,9 @@
 from os import getenv
 from dotenv import load_dotenv
 from API.auth_API import AuthAPI
-from locust import HttpUser, task, between
+from main.utils.log.logger import Logger
+from main.utils.data.data_utils import DataUtils
+from locust import HttpUser, task, between, events
 from main.utils.data.JSON_loader import JSONLoader
 
 load_dotenv()
@@ -17,8 +19,20 @@ class GatewayAPIUser(HttpUser):
         super().__init__(*args, **kwargs)
         auth_api = AuthAPI()
         response = auth_api.auth()
-        response_body = response.json()
-        self.token = response_body['data']['access_token']
+        response_body = DataUtils.dict_to_model(response.json())
+        self.token = response_body.data.access_token
+
+    @events.request.add_listener
+    def log_request(name, request_type, response_time, response, exception):
+        if exception:
+            Logger.log(f"[req] ▶ {request_type}: {getenv('GATEWAY_URL')}{name}")
+            Logger.log(f"[res]   body: {exception}")
+            Logger.log(f"failed ❌")
+        else:
+            Logger.log(f"[req] ▶ {request_type}: {getenv('GATEWAY_URL')}{response.url}")
+            Logger.log(f"[res]   response time: {response_time}ms")
+            Logger.log(f"[res]   status code: {response.status_code}")
+            Logger.log(f"passed ✅")
 
     @task
     def get_test_clients(self):
