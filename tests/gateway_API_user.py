@@ -23,7 +23,7 @@ class GatewayAPIUser(HttpUser):
         self.token = response_body.data.access_token
 
     @events.request.add_listener
-    def log_request(name, request_type, response_time, response, exception):
+    def log_request(name, request_type, response_time, response, exception, context, **kwargs):
         if exception:
             Logger.log(f"[req] ▶ {request_type}: {getenv('GATEWAY_URL')}{name}")
             Logger.log(f"[res]   body: {exception}")
