@@ -6,7 +6,7 @@ from main.utils.data.data_utils import DataUtils
 from locust import HttpUser, task, between, events
 from main.utils.data.JSON_loader import JSONLoader
 
-load_dotenv()
+load_dotenv(override=True)
 
 class GatewayAPIUser(HttpUser):
     host = getenv('GATEWAY_URL')

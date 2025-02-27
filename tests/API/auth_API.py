@@ -4,7 +4,7 @@ from main.utils.log.logger import Logger
 from main.utils.API.base_API import BaseAPI
 from main.utils.data.JSON_loader import JSONLoader
 
-load_dotenv()
+load_dotenv(override=True)
 
 class AuthAPI(BaseAPI):
     login = None
