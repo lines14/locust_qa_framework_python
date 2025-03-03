@@ -4,8 +4,6 @@
         "testUsers": "/api/auth/test-users"
     },
     "dictionary": {
-        "servers": "/api/dictionary/settings/5",
-        "verifyBool": "/api/dictionary/settings/verify_bool",
         "testClients": "/api/dictionary/test-clients",
         "getCurrency": "/api/dictionary/get-currency/EUR"
     },
@@ -14,14 +12,5 @@
     },
     "ESBD": {
         "callMethod": "/api/esbd/call-method"
-    },
-    "notification": {
-        "sendSMSCode": "/api/notification/verify/send-sms-code",
-        "verifyCode": "/api/notification/verify/code",
-        "smsList": "/api/notification/sms/list?_sort=id&_order=desc",
-        "smsSend": "/api/notification/sms/send",
-        "emailList": "/api/notification/email/list?_sort=id&_order=desc",
-        "emailSend": "/api/notification/email/send",
-        "emailSendTemplate": "/api/notification/email/send-template"
     }
 }
