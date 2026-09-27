@@ -6,7 +6,7 @@ from main.utils.user.base_api_user import BaseAPIUser
 from tests.api.spending_tracker_api import SpendingTrackerAPI
 
 
-class GatewayAPIUser(BaseAPIUser):
+class SpendingTrackerAPIUser(BaseAPIUser):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         spending_tracker_api = SpendingTrackerAPI()
