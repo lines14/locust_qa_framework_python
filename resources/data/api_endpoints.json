@@ -1,0 +1,6 @@
+{
+    "spending_tracker": {
+        "auth": "/api/auth",
+        "greetings": "/api/greetings"
+    }
+}

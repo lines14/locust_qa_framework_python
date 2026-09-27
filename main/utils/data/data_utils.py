@@ -1,15 +1,13 @@
 import json
 
-class DataUtils:            
+
+class DataUtils:
     @classmethod
-    def nested_data_to_models(cls, dict):
+    def nested_data_to_models(cls, data):
         obj = cls()
-        obj.__dict__.update(dict)
+        obj.__dict__.update(data)
         return obj
-    
+
     @classmethod
-    def dict_to_model(cls, dict):
-        return json.loads(
-            json.dumps(dict, ensure_ascii=False), 
-            object_hook=cls.nested_data_to_models
-        )
+    def dict_to_model(cls, data):
+        return json.loads(json.dumps(data, ensure_ascii=False), object_hook=cls.nested_data_to_models)

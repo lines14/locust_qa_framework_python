@@ -1,5 +1,7 @@
 .env
 .env.test
-tests/log.txt
+.venv
 .idea/
 .pytest_cache/
+.vscode
+.ruff_cache

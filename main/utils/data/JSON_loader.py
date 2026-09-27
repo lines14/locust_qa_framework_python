@@ -1,21 +1,16 @@
-import os
 import json
-import classutilities
+import os
+
 from main.utils.data.data_utils import DataUtils
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-class JSONLoader():
-    @classutilities.classproperty
-    def test_data(cls):
-        with open('../../../resources/test_data.json', 'r', encoding='utf-8') as data:
-            return DataUtils.dict_to_model(json.loads(data.read()))
+_RESOURCES_DIR = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../../resources/data"))
 
-    @classutilities.classproperty
-    def config_data(cls):
-        with open('../../../resources/config_data.json', 'r', encoding='utf-8') as data:
-            return DataUtils.dict_to_model(json.loads(data.read()))
-        
-    @classutilities.classproperty
-    def API_endpoints(cls):
-        with open('../../../resources/API_endpoints.json', 'r', encoding='utf-8') as data:
-            return DataUtils.dict_to_model(json.loads(data.read()))
+
+class JSONLoader:
+    @classmethod
+    def load_all(cls):
+        for file_name in os.listdir(_RESOURCES_DIR):
+            if file_name.endswith(".json"):
+                attr_name = os.path.splitext(file_name)[0]
+                with open(os.path.join(_RESOURCES_DIR, file_name), encoding="utf-8") as json_file:
+                    setattr(cls, attr_name, DataUtils.dict_to_model(json.loads(json_file.read())))
