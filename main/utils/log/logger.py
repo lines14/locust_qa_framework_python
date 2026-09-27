@@ -26,20 +26,22 @@ class Logger:
         if filename is None:
             filename = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../artifacts/log.txt"))
 
-        os.makedirs(os.path.dirname(filename), exist_ok=True)
-        with open(filename, "a", encoding="utf-8") as file:
-            for timestamp, message in cls._logs:
-                file.write(f"{timestamp}  {message}\n")
+        if cls._logs:
+            os.makedirs(os.path.dirname(filename), exist_ok=True)
+            with open(filename, "a", encoding="utf-8") as file:
+                for timestamp, message in cls._logs:
+                    file.write(f"{timestamp}  {message}\n")
 
     @classmethod
     def error_log_to_file(cls, filename: str | None = None):
         if filename is None:
             filename = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../artifacts/error_log.txt"))
 
-        os.makedirs(os.path.dirname(filename), exist_ok=True)
-        with open(filename, "a", encoding="utf-8") as file:
-            for timestamp, message in cls._logs:
-                file.write(f"{timestamp}  {message}\n")
+        if cls._error_logs:
+            os.makedirs(os.path.dirname(filename), exist_ok=True)
+            with open(filename, "a", encoding="utf-8") as file:
+                for timestamp, message in cls._error_logs:
+                    file.write(f"{timestamp}  {message}\n")
 
     @staticmethod
     def _safe_decode(text: str) -> str:
